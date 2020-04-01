@@ -26,9 +26,9 @@ def getTransferFunction(Slopes):
         if dSlopes[i]%20!=0:
             return None
         if dSlopes[i]>=0 :
-            Num += [-10**(i+1)]*(dSlopes[i]//20)
+            Num += [10**(i+1)]*(dSlopes[i]//20)
         else:
-            Den += [-10**(i+1)]*(-dSlopes[i]//20)
+            Den += [10**(i+1)]*(-dSlopes[i]//20)
         
     
     return np.array(Num),np.array(Den)
@@ -37,7 +37,8 @@ num = np.poly(Num)
 den = np.poly(Den)
 from scipy import signal
 import matplotlib.pyplot as plt
-s1 = signal.lti(num, den) 
+k = 1e5*den[-1]/num[-1]
+s1 = signal.lti(num*k, den) 
 
 w, mag, phase = signal.bode(s1)
 plt.figure()
@@ -45,11 +46,12 @@ plt.xlabel("f")
 plt.ylabel("H(f)")
 plt.title("Bode Plot")
 plt.semilogx(w, mag)    # Bode magnitude plot
+x = np.array([1,10,100,1000,10000,1e5,1e6])
+y = []
+k = 100
+for i in range(len(x)):
+    k+=Slopes[i]
+    y.append(k)
 
-s1 = signal.ZerosPolesGain(Num, Den ,1 )
-w, H = signal.freqresp(s1)
-plt.figure()
-plt.plot(H.real, H.imag, "b")
-plt.plot(H.real, -H.imag, "r")
-plt.title("Nyquist Plot")
-plt.show()
+plt.plot(x,y)
+plt.legend(["Calculated Plot" , "Given Plot"])   
