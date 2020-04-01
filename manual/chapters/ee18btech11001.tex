@@ -1,44 +1,103 @@
-\item Consider a unity feedback system as shown in the figure,shown with an integral compensator $\frac{k}{s}$ and open-loop transfer function
-\begin{align}
- G(s) = \frac{1}{s^2+3s+2}
-\end{align}   
-   where $k>0$. Find the positive value of $k$ for which there are two poles of unity feedback system on the $\j\omega$ axis.
- \begin{figure}[!ht]
-\centering
-     \includegraphics[width=\columnwidth]{./figs/ee18btech11001/ee18btech11001.eps}
-\caption{}
-\label{fig:routh}
-    \end{figure}
+\item
+%\begin{flushleft}
+\textsf{ For an LTI system, the Bode plot for its gain is as illustrated in the Fig. \ref{fig:galaxy} The number of system poles $N_{p}$ and number of system zeros $N_{z}$ in the frequency range 1 Hz $\leq$ f $\leq$ $10^{7}$ Hz is}
+%\end{flushleft}
 
-\solution  The open loop transfer function
-%
-\begin{align}
-G(s) = \frac{1}{s^2+3s+2}
-\end{align}
-%
-Hence,
-\begin{align}
-H(s) = \frac{Y(s)}{X(s)} &= \frac{G(s)k/s}{1+G(s)k/s}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/ee18btech11001/ee18btech11001.eps}
+    
+    \label{fig:galaxy}
+\end{figure}
+
+{ Solution:- }
+\begin{flushleft}
+\textsf{Let us consider a generalized transfer gain}
+\end{flushleft}
+\vspace{10pt}
+$H(s) = k \frac{(s-z_{1})(s-z_{2})...(s-z_{m-1})(s-z_{m})}{(s-p_{1})(s-p_{2})....(s-p_{n-1})(s-p_{n})}$\vspace{18pt}\\
+\begin{multline}
+    $Gain = 20\log\abs{H(s)} = 20\log \abs{k} + 20\log \abs{s-z_{1}} 
+    \\
+    + 20\log \abs{s-z_{2}} + \dots + 20\log \abs{s-z_{m}} - 20\log \abs{s-p_{1}} 
+    \\
+    - 20\log \abs{s-p_{2}} - \dots - 20\log \abs{s-z_{n}} $ 
+\end{multline}
+
+\begin{left}
+
+
+Let us consider a $ 20\log \abs{s-z_{1}} $
 \\
-&=  \frac{k}{1 + ks(s^2+3s+2)}
-\end{align}
-%
-The poles of $H(s)$ are obtained from 
-\begin{align}
-s^3+3s^2+2s+k = 0
-\end{align}
-%
-The corresponding Routh array is given by 
-\begin{align}
-\begin{vmatrix}
-s^3\\s^2\\s^1 \\ s^0 
-\end{vmatrix} 
-\begin{vmatrix}
-1 & 2 \\ 3 & k \\  \frac{6-k}{3} & 0\\ k & 0
-\end{vmatrix}
-\end{align}
-%\newline $For poles on $j$\omega$ axis any one of the row should be zero
-%\newline => $\frac{6-k}{3}$ = 0 or k = 0
-%\newline But given k>0 ...
-%\newline therefore, 6-k=0 => k = 6
+Let $s = j\omega$
+\\
+$ 20\log \abs{s-z_{1}} = 20\log \abs{\sqrt{\omega^{2} + z_{1}^{2}}} $
+\\
+Based on log scale plot approximations,to the 
+\\
+left of $z_{1} \hspace{5pt} \omega << z_{1} $ and towards right  $ \omega >> z_{1} $
+\\ \\
+For $\omega < z_{1}$
+\\
+$ 20\log \abs{s-z_{1}} = 20\log \abs{\sqrt{\omega^{2} + z_{1}^{2}}} = 20 \log \abs{z_{1}} 
+\\
+= constant $ i.e. Slope = 0
+\\
+\\
+For $\omega > z_{1}$
+\\
+$ 20\log \abs{s-z_{1}} = 20\log \abs{\sqrt{\omega^{2} + z_{1}^{2}}} = 20 \log \abs{\omega} $
+\\
+i.e Slope = 20
+\\
+\textbf{When a zero is encountered the slope always increases by 20 dB/decade}
+\\
+\\
+Doing similar analysis for $ - 20\log \abs{s-p_{1}} $  We conclude
+\\
+\textbf{When a pole is encountered the slope always decreases by 20 dB/decade}
+\\
+\end{left}
 
+\begin{itemize}
+\\
+\item $f = 10 Hz $
+\\Slope$(f<10) = 0$ dB/dec
+\\Slope$(f>10) = -20$ dB/dec 
+\\ $ \Delta Slope = -20$ dB/dec
+\\ $n_{z} = 0$   $n_{p} = 1 $
+\\
+\\
+\item $f = 10^{2}$ Hz 
+\\Slope($f<10^{2}$) = -20 dB/dec
+\\Slope($f>10^{2}$) = -60 dB/dec 
+\\ $ \Delta Slope$ = -40 dB/dec
+\\ $n_{z} = 0$ $n_{p} = 2 $
+\\ 
+\item $f = 10^{3} Hz $
+\\Slope($f<10^{3}$) = -60 dB/dec
+\\Slope($f>10^{3}$) = -40 dB/dec 
+\\ $ \Delta Slope$ = +20 dB/dec
+\\ $n_{z} = 1$   $n_{p} = 0 $
+\\
+\item $f = 10^{4} Hz$ 
+\\Slope($f < 10^{4}$) = -40 dB/dec
+\\Slope($f>10^{4}$) = 0 dB/dec 
+\\ $ \Delta Slope$ = +40 dB/dec
+\\ $n_{z} = 2$   $n_{p} = 0 $
+\\
+\item $f = 10^{5}$ Hz 
+\\Slope($f<10^{5}$) = 0 dB/dec
+\\Slope($f>10^{5}$) = -40 dB/dec 
+\\ $ \Delta Slope$ = -40 dB/dec
+\\ $n_{z} = 0$   $n_{p} = 2 $
+\\
+\item $f = 10^{6}$ Hz 
+\\Slope($f<10^{2}$) = -40 dB/dec
+\\Slope($f>10^{2}$) = -60 dB/dec 
+\\ $ \Delta Slope$ = -20 dB/dec
+\\ $n_{z} = 0$   $n_{p} = 1 $
+\\
+\\ \boxed{$N_{p} = 6 $   $N_{z} = 3 $}
+\\
+\end{itemize}
