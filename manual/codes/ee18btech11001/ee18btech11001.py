@@ -1,4 +1,6 @@
 import numpy as np
+from scipy import signal
+import matplotlib.pyplot as plt
 def CalculatePolesAndZeros(Slopes):
 	dSlopes = Slopes[1:]-Slopes[:-1]
 	Nz=0
@@ -32,26 +34,25 @@ def getTransferFunction(Slopes):
         
     
     return np.array(Num),np.array(Den)
-Num,Den =  getTransferFunction(Slopes)
-num = np.poly(Num)
-den = np.poly(Den)
-from scipy import signal
-import matplotlib.pyplot as plt
-k = 1e5*den[-1]/num[-1]
-s1 = signal.lti(num*k, den) 
 
+Num,Den =  getTransferFunction(Slopes)
+s1 = signal.lti(Num,Den,1e15) 
 w, mag, phase = signal.bode(s1)
 plt.figure()
 plt.xlabel("f")
 plt.ylabel("H(f)")
 plt.title("Bode Plot")
 plt.semilogx(w, mag)    # Bode magnitude plot
-x = np.array([1,10,100,1000,10000,1e5,1e6])
+ 
+
+x = np.array([1,10,100,1000,10000,1e5,1e6,1e7])
 y = []
 k = 100
-for i in range(len(x)):
-    k+=Slopes[i]
+for i in range(len(x)-1):
+    
     y.append(k)
-
+    k+=Slopes[i]
+y.append(k)
 plt.plot(x,y)
-plt.legend(["Calculated Plot" , "Given Plot"])   
+ 
+plt.legend(["Calculated Plot" , "Given Plot"]) 
