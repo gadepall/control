@@ -1,7 +1,6 @@
- 
 ###################################################################
 
-# This a python code for verifying type of system using routh array.    
+# This a python code for verifying system using routh array.    
 # By Moparthi Varun Sankar
 # April 17 , 2020 
 # Released under GNU GPL
@@ -14,16 +13,8 @@ import matplotlib.pyplot as plt
 import control
 import scipy as sp
 
-degree=int(input("Degree of the polynomial:"))          #Enter degree
-
-
-if degree %2 == 1 :
-   c=np.zeros(degree+3)
-else :
-   c =np.zeros(degree+4)           # Creatating a array of zeros 
-print("Enter the integer coefficients" )  # Coefficients in order of decreasing powers. 
-for i in range(0,degree+1):                                
-	c[i]=input("")                   #Taking coefficients as input
+degree = 3
+c = [4,3,16,12,0,0] #Taking coefficients as input
 
 Rou_matrix=np.zeros([degree+1,degree+1])            #Form first and second row of the Routh Matrix
 for j in range (0,degree-1):
