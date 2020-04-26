@@ -28,17 +28,25 @@ $\tan^{-1}(\omega) $ is an increasing funtion.  Hence,
 \begin{align}
 \tan^{-1}(\omega) \geq \tan^{-1}\brak{\frac{\omega}{10}}.
 \end{align}
-$\because $ $0 < \theta < \frac{\pi}{2}$ in \eqref{ee18btech11051_eq3}, the polar plot of $G(s)$ lies in the first quadrant. The following code generates the polar plot in Fig.       \ref{fig:ee18btech11051_fig2}.
-%
+$\because $ $0 < \theta < \frac{\pi}{2}$ in \eqref{ee18btech11051_eq3}, the polar plot of $G(s)$ lies in the first quadrant. The following code generates the polar plot in Fig.       \ref{fig:ee18btech11051_fig1}.
+
 \begin{lstlisting}
     codes/ee18btech11051.py
+    
 \end{lstlisting}
+%
+\\
+According to Nyquist criterion, If the open-loop transfer function G(s) is stable, then the closed-loop system is unstable for  any  encirclement  of  the  point  -1+0j.
+
+The only pole of G(s) lies in the left half of the s-plane. So, G(s) is stable. And from Fig.\ref{fig:ee18btech11051_fig1}, the number of clockwise encirclements around (-1+j0) is zero (N = 0). Therefore, the system is stable. 
+
+
 
       \begin{figure}[!h]
       \centering
       \includegraphics[width=\columnwidth]{./figs/ee18btech11051.eps}
       \caption{}
-      \label{fig:ee18btech11051_fig2}
+      \label{fig:ee18btech11051_fig1}
       \end{figure}
 
 
