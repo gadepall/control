@@ -1,9 +1,4 @@
-\begin{enumerate}[label=\arabic*.,ref=\theenumi]
-%\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
-\numberwithin{equation}{enumi}
-\item Find the frequency of oscillation for given hartley circuit and also find condition on $g_m$.\newline 
-Below is the figure, Fig \ref{fig:ee18btech11019_fig1}
-
+Find the frequency of oscillation for the Hartley circuit in Fig. \ref{fig:ee18btech11019_fig1}.  Also find the condition on $g_m$.
 \begin{figure}[!ht]
 	\begin{center}
 		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_1.tex}}
@@ -11,8 +6,16 @@ Below is the figure, Fig \ref{fig:ee18btech11019_fig1}
 \caption{Hartley oscillator}
 \label{fig:ee18btech11019_fig1}
 \end{figure}
-\solution We will first draw an equivalent circuit for the above circuit.\newline
-To draw an equivalent block diagram we will draw small signal model for transistor Fig.\ref{fig:ee18btech11019_fig2}\newline
+%Below is the figure, 
+\begin{enumerate}[label=\arabic*.,ref=\theenumi]
+%\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi}
+\item Draw the small signal model for Fig. \ref{fig:ee18btech11019_fig1} and the block diagram for the equivalent control system.
+\\
+\solution See Figs. \ref{fig:ee18btech11019_fig2} and \ref{fig:ee18btech11019_fig3}.
+%
+\renewcommand{\thefigure}{\theenumi.\arabic{figure}}
 \begin{figure}[!ht]
 	\begin{center}
 		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_2.tex}}
@@ -20,7 +23,6 @@ To draw an equivalent block diagram we will draw small signal model for transist
 \caption{Small signal model}
 \label{fig:ee18btech11019_fig2}
 \end{figure}
-And, its block diagram is as follows: \newline
 
 \begin{figure}[!ht]
 	\begin{center}
@@ -29,32 +31,21 @@ And, its block diagram is as follows: \newline
 \caption{Block diagram}
 \label{fig:ee18btech11019_fig3}
 \end{figure}
+\renewcommand{\thefigure}{\theenumi}
 
-Here G(s) is the amplification gain, and H(s) is the feedback gain.\newline
-G(s) small signal circuit is given as follows:\newline
-As, \textbf{$V_f$ = $V_i$}\newline
-\begin{figure}[!ht]
-	\begin{center}
-		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_8.tex}}
-	\end{center}
-\caption{Small signal G(s)}
-\label{fig:ee18btech11019_fig8}
-\end{figure}
-and G(s) is given by, $\frac{V_o}{V_i}$\newline
-Here,\newline
+\item Draw the circuit for $H$ and find it.
+\\
+\solution From Fig. \ref{fig:ee18btech11019_fig7},
 \begin{align}
-    i_1 &= \frac{V_i}{sL_2}
+H(s) &= \frac{V_f}{V_o}\\
+%V_0 &= V_f + i_1\times \frac{1}{sC}\\
+%i_1 &= \frac{V_f}{sL_2}\\
+%\end{align}
+%Solving,\newline
+%\begin{align}
+&= \brak{\frac{s^2CL_2}{s^2CL_2 +1}}
+\label{eq:ee18btech11019_H}
 \end{align}
-\begin{align}
-    V_o &= I(sL_1\parallel R)\\
-    I &= i_1 + g_mV_i
-\end{align}
-Solving these equations we get,\newline
-\begin{align}
-    \frac{V_o}{V_i} = G(s) = \brak{g_m + \frac{1}{sL_2}}\brak{\frac{RsL_1}{R + sL_1}}
-\end{align}
-Now, solving for H(s)\newline
-From the small signal model feedback, we know that H(s) is output/input, \newline
 \begin{figure}[!ht]
 	\begin{center}
 		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_7.tex}}
@@ -62,47 +53,66 @@ From the small signal model feedback, we know that H(s) is output/input, \newlin
 \caption{Small signal H(s)}
 \label{fig:ee18btech11019_fig7}
 \end{figure}
-Where,\newline
-Output is $V_f$\newline
-Input is $V_o$ \newline
+%
+\item Draw the circuit for $G$ and find it.
+\\
+\solution In Fig. \ref{fig:ee18btech11019_fig8}
+%
 \begin{align}
-H(s) &= \frac{V_f}{V_o}\\
-V_0 &= V_f + i_1\times \frac{1}{sC}\\
-i_1 &= \frac{V_f}{sL_2}\\
+    i_1 &= \frac{V_i}{sL_2}
+\\
+%\end{align}
+%\begin{align}
+    V_o &= I(sL_1\parallel R)\\
+    I &= i_1 + g_mV_i
 \end{align}
-Solving,\newline
+yielding
 \begin{align}
-    H(s) = \brak{\frac{s^2CL_2}{s^2CL_2 +1}}
+    \frac{V_o}{V_i} = G(s) = \brak{g_m + \frac{1}{sL_2}}\brak{\frac{RsL_1}{R + sL_1}}
+\label{eq:ee18btech11019_G}
 \end{align}
-Characteristic equation is given by:\newline
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_8.tex}}
+	\end{center}
+\caption{Small signal G(s)}
+\label{fig:ee18btech11019_fig8}
+\end{figure}
+\item Find the frequency of oscillation.
+\\
+\solution From \ref{eq:ee18btech11019_G} and \ref{eq:ee18btech11019_G},
+%
 \begin{align}
     1+G(s)H(s) = 0
 \end{align}
-Substituting the values and simplifying, we get\newline
 \begin{multline}
-    s^3(g_mCL_1L_2 + CL_1L_2) +\\ s^2(RCL_1 + RCL_2) + sL_1 + R =0
+\implies     s^3(g_mCL_1L_2 + CL_1L_2) +\\ s^2(RCL_1 + RCL_2) + sL_1 + R =0
 \end{multline}
-Now, for it to oscillate, roots of the equation should lie on imaginary axis, therefore j$\omega$ should be a solution\newline
-Substituting that, we get
+For oscillations, substituting $s= \j \omega$, 
+%Now, for it to oscillate, roots of the equation should lie on imaginary axis, therefore j$\omega$ should be a solution\newline
+%Substituting that, we get
 \begin{multline}
     (R - \omega^2(RC(L_1 +L_2)) +\\ j(\omega L_1 - \omega^3(g_mR +1)CL_1L_2) = 0
 \end{multline}
-\textbf{Equating Real part to 0}\newline
+Equating the real part of the above to 0,
 \begin{align}
-    \omega^2(RC(L_1 +L_2) = R\\
-    \omega = \frac{1}{\sqrt{C(L_1 + L_2)}}
+    \omega^2(RC(L_1 +L_2) &= R\\
+\implies     \omega &= \frac{1}{\sqrt{C(L_1 + L_2)}}
+\label{eq:ee18btech11019_f}
 \end{align}
-\textbf{Equating Imaginary part to 0}\newline
+Similarly, from the imaginary part, 
 \begin{align}
-    g_mR + 1 = \frac{C(L_1 +L_2)}{CL_2}\\
-    g_mR = \frac{L_1}{L_2}
+    g_mR + 1 &= \frac{C(L_1 +L_2)}{CL_2}\\
+\implies     g_mR &= \frac{L_1}{L_2}
 \end{align}
-Therefore to have stable oscillations, we need \newline
-$g_mR >= \frac{L_1}{L_2}$\newline\newline
-\textbf{Simulation}\newline
-For simulation more elaborate circuit of Hartley oscillator was used, i.e. more passive components like capacitors and resistors, so as the the oscillations don't die out quickly, and a voltage source so as the oscillations start.\newline
+For stable oscillations, 
+\begin{align}
+g_mR >= \frac{L_1}{L_2}
+\end{align}
+\numberwithin{figure}{enumi}
+\item Simulate the oscillator using  Fig. \ref{fig:ee18btech11019_fig4} and Table \ref{table:ee18btech11019_1}.
 
-Below is the circuit which was used \ref{fig:ee18btech11019_fig4}
+\renewcommand{\thefigure}{\theenumi.\arabic{figure}}
 \begin{figure}[!ht]
 	\begin{center}
 		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11019_4.tex}}
@@ -110,21 +120,15 @@ Below is the circuit which was used \ref{fig:ee18btech11019_fig4}
 \caption{Simulation circuit}
 \label{fig:ee18btech11019_fig4}
 \end{figure}
-
-
-\textbf{Table for parameter values taken}
 \begin{table}[!ht]
 \centering
 \input{./tables/ee18btech11019_1.tex}
 \caption{}
 \label{table:ee18btech11019_1}
 \end{table}
-\textbf{Verifying the output}:\newline
-Plot generated from transfer function, taking impulse response\newline \ref{fig:ee18btech11019_fig5}
-Taking an equivalent R  \newline
-$R = L_1$ and $g_mR = \frac{L_1}{L_2}$\newline
-
-\textbf{Code for generating impulse response}
+\solution The closed loop impulse response is plotted in Fig.  \ref{fig:ee18btech11019_plot_1}
+%\ref{fig:ee18btech11019_fig5}
+using the following code.
 \begin{lstlisting}
 codes/ee18btech11019_1.py
 \end{lstlisting}
@@ -134,27 +138,31 @@ codes/ee18btech11019_1.py
 \caption{Output when taken from transfer function}
 \label{fig:ee18btech11019_plot_1}
 \end{figure}
-
-
-
-\textbf{Actual simulation results}, \newline
-Running ngspice netlist file, we produce dat file. From that data we get plot and frequency from  python script found in\newline
+%
+The spice simulations are done using the following netlist
+\begin{lstlisting}
+spice/Draft3.net
+\end{lstlisting}
+%
+and plotted in Fig. \ref{fig:ee18btech11019_plot_2}
+%
+using the following code.
 \begin{lstlisting}
 spice/ee18btech11019_2.py
 \end{lstlisting}
-Plot:\newline
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{./figs/ee18btech11019_6.eps}
 \caption{Simulation result}
 \label{fig:ee18btech11019_plot_2}
 \end{figure}
-
-Frequency obtained is \textbf{3384 Hz}\newline
-\textbf{Actual expected frequency is:}
+\renewcommand{\thefigure}{\theenumi}
+%
+From Fig. \ref{fig:ee18btech11019_plot_2},
+the frequency obtained is $3.384$ kHz.  From \ref{eq:ee18btech11019_f}, 
+the expected frequency is
 \begin{align}
-    =\frac{\omega}{2\pi}
-    = \frac{1}{2\pi \sqrt{C(L_1 +L_2)}}\\
-    = 3394 Hz
+f   &= \frac{1}{2\pi \sqrt{C(L_1 +L_2)}}\\
+    &= 3.394 \,kHz
 \end{align}
 \end{enumerate}
