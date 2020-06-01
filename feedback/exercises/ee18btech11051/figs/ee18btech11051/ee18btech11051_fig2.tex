@@ -1,0 +1,19 @@
+\tikzstyle{block} = [draw, fill=white!20, rectangle, 
+    minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, fill=white!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    \node [input, name=input] {};
+    \node [sum, right of=input] (sum) {};
+    \node [block, right of=sum] (controller) {$G(s) = \frac{V_{O}}{V_{X}}$};
+    \node [output, right of=controller] (output) {};
+    \node [block, below of=controller] (feedback) {$H(s) = 1$};
+    
+    \draw [->] (sum) -- node {$V_{X}$} (controller);
+    \draw [->] (controller) -- node [name=y] {$V_o$}(output);
+    \draw [->] (y) |- (feedback);
+    \draw [->] (feedback) -| node[pos=0.99]{$+$}  node [near end] {$V_f$} (sum);
+\end{tikzpicture}

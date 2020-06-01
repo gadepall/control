@@ -1,0 +1,18 @@
+let's try
+vin 1 0 dc 0 ac 1
+e1 2 0 1 6 1000
+l2 3 2 0.1
+r2 3 0 1000
+e2 4 0 3 0 0.001
+l1 5 4 100m
+r1 6 5 2000
+c1 6 0 0.0000001
+
+.ac dec 10 1 1Meg
+
+.control
+run
+wrdata ee18btech11038_opampgn vdb(3) xlog
+wrdata ee18btech11038_opampph {57.29*vp(3)} xlog
+.endc
+.end

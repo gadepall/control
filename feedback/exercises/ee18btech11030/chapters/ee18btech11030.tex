@@ -12,22 +12,80 @@ Consider the positive-feedback circuit shown in Fig. \ref{fig:ee18btech11030}.
 \item Sketch a Pole-Zero plot for varying K. 
 \item For what value of K do the poles coincide? For what value of K does the response becomes maximally flat? For what value of K does the circuit oscillate?
 \end{enumerate}
-Assume that the amplifier has frequency-independent gain, infinite input impedance, and zero output impedance.
+Assume the amplifier has frequency-independent gain, infinite input impedance, and zero output impedance.
 %\begin{enumerate}[label=\thesubsection.\arabic*.,ref=\thesubsection.\theenumi]
 \begin{enumerate}[label=\arabic*.,ref=\theenumi]
 \numberwithin{equation}{enumi}
-\item Find $L(s)$.
+\item Compute G(s) 
 
-\solution To obtain the loop transmission L(s),
+\solution :
+
 \begin{itemize}
-\item Short-circuit the signal source $V_s$.
-\item Break the loop at the Amplifier input.
-\item Then apply a test voltage $V_t$ and find the returned voltage $V_r$, as indicated in Figure: \ref{fig:ee18btech11030_fig1}.
+    \item For Gain G(s) greater than 1,the gain block in Fig:\ref{fig:ee18btech11030} is built using LM741 op-amp.
+\end{itemize}
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_1.tex}}
+	\end{center}
+	\caption{LM741 op-amp}
+	\label{fig:ee18btech11030_fig5}
+\end{figure}
+
+\begin{align}
+    G(s) = \frac{v_o}{v_i} = 1 + \frac{R_2}{R_1}
+\end{align}
+
+\begin{itemize}
+    \item For Gain G(s) less than 1,the gain block(K) in Fig: \ref{fig:ee18btech11030} is built using the voltage divider.
 \end{itemize}
 
 \begin{figure}[!ht]
 	\begin{center}
-		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_1.tex}}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_2.tex}}
+	\end{center}
+	\caption{Voltage Divider}
+	\label{fig:ee18btech11030_fig6}
+\end{figure}
+
+\begin{align}
+    G(s) = \frac{v_o}{v_i} = \frac{R_2}{R_1 + R_2}
+\end{align}
+
+\item Compute H(s) 
+
+\solution :
+
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_3.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:ee18btech11030_figure}
+\end{figure}
+\begin{itemize}
+\item Consider the voltage at the end of resistor R to be $V_1$.Apply KCL at nodes.   
+\begin{align}
+\frac{V_f-V_1}{10R}+\frac{V_f-0}{\frac{10}{sC}} = 0
+\implies V_1 = V_f(sCR+1)
+\label{eq:ee18btech11030_v1}
+\end{align}
+\begin{align}
+    \frac{V_1 - V_f}{10R} + \frac{V_1 - 0}{R} + \frac{V_1 - V_o}{\frac{1}{sC}} = 0
+    \label{eq:ee18btech11030_midv1}
+\end{align}
+\item Substitute $V_1$ from Eq: \ref{eq:ee18btech11030_v1} in Eq: \ref{eq:ee18btech11030_midv1}
+\end{itemize}
+\begin{align}
+    H(s) = \frac{V_f}{V_o} = \frac{1}{sRC + \frac{1}{sRC} + 2.1}
+\end{align}
+
+\item Find $L(s)$.
+
+\solution To obtain the loop transmission L(s),
+
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_4.tex}}
 	\end{center}
 	\caption{}
 	\label{fig:ee18btech11030_fig1}
@@ -35,21 +93,11 @@ Assume that the amplifier has frequency-independent gain, infinite input impedan
 
 The loop transmission is given by
 \begin{align}
-    L\brak{s} = -\frac{V_r\brak{s}}{V_t\brak{s}} = -KT\brak{s}
+    L\brak{s} = -\frac{V_r\brak{s}}{V_t\brak{s}} = -KH\brak{s}
 \label{eq:ee18btech11030}
 \end{align}
-where T(s) is the transfer function of the two-port RC network shown inside the broken-line box in Figure: \ref{fig:ee18btech11030_fig1}.
+where H(s) is the transfer function of the two-port RC network shown inside the broken-line box in Figure: \ref{fig:ee18btech11030_fig1}.
 
-\begin{align}
-T\brak{s} = \frac{V_r\brak{s}}{V_1\brak{s}}
-\label{eq:ee18btech11030_1}
-\end{align}
-Applying KCL at nodes present in the RC network yields  
-\begin{align}
-T\brak{s} = \frac{s(\frac{1}{CR})}{s^2 + s(\frac{2.1}{CR}) + (\frac{1}{CR})^2}
-\label{eq:ee18btech11030_2}
-\end{align}
-Substituting T\brak{s} in Eq: \ref{eq:ee18btech11030}
 \begin{align}
     L\brak{s} = \frac{-s(\frac{K}{CR})}{s^2 + s(\frac{2.1}{CR}) + (\frac{1}{CR})^2}
 \end{align}
@@ -77,7 +125,7 @@ By comparing the Eq:\ref{eq:ee18btech11030_3} with the standard characteristic e
 \solution
 \begin{figure}[!ht]
 	\begin{center}
-		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_2.tex}}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_5.tex}}
 	\end{center}
 	\caption{ Positive Feedback Circuit}
 	\label{fig:ee18btech11030_fig2}
@@ -85,14 +133,14 @@ By comparing the Eq:\ref{eq:ee18btech11030_3} with the standard characteristic e
 
 Closed Loop gain 
 \begin{align}
-    T = \frac{k(s^2+s(\frac{2.1}{RC})+(\frac{1}{RC})^2)}{s^2 + s(\frac{2.1-K}{CR}) + (\frac{1}{CR})^2}
-    \label{eq:ee18btech11030_5}
+T = \frac{k(s^2+s(\frac{2.1}{RC})+(\frac{1}{RC})^2)}{s^2 + s(\frac{2.1-K}{CR}) + (\frac{1}{CR})^2}
+\label{eq:ee18btech11030_5}
 \end{align}
 
 \item Sketch the Normalised closed loop gain of T for various Q values
 
 \solution 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering
   \includegraphics[width=\columnwidth]{./figs/ee18btech11030/ee18btech11030_fc.eps}
 \caption{}
@@ -138,35 +186,6 @@ From Figure : \ref{fig:ee18btech11030_fig4}
 \label{table:ee18btech11030_table}
 \end{table}
 
-\item Building gain K in spice simulation for circuit Fig: \ref{fig:ee18btech11030_fig1}
-
-\solution :
-
-\begin{itemize}
-\item For K greater than 1(K = 2.1),the gain block is built using LM741 op-amp.
-\begin{figure}[!ht]
-	\begin{center}
-		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_3.tex}}
-	\end{center}
-	\caption{LM741 op-amp}
-	\label{fig:ee18btech11030_fig5}
-\end{figure}
-\begin{align}
-K = 1 + \frac{R_2}{R_1}
-\implies \frac{R_2}{R_1} = 1.1
-\end{align}
-\item For K less than 1, the gain block is built using voltage divider circuit.
-\begin{figure}[!ht]
-	\begin{center}
-		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11030/ee18btech11030_4.tex}}
-	\end{center}
-	\caption{Voltage Divider}
-	\label{fig:ee18btech11030_fig6}
-\end{figure}
-\begin{align}
-K = \frac{R_2}{R_1+R_2}
-\end{align}
-\end{itemize}
 
 \item Verify the response in time domain using parameters in Table : \ref{table:ee18btech11030_table1} for K = 2.13
 

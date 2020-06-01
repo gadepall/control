@@ -1,0 +1,37 @@
+Closed loop gain output
+*Choosing npn transistor with beta = 100
+.MODEL Qmod NPN(BF=100)
+
+*Input current source
+Is 1 0 SIN(0 1u 10K 0 0)
+
+*Q1 transistor
+q1 2 1 0 Qmod
+
+*Q2 transistor
+q2 3 2 4 Qmod
+
+Vcc 3 0 5V
+
+Vee 0 5 5V
+
+rc 2 3 10K
+
+re 4 5 10K
+
+rf 4 1 100K
+
+* ANALYSIS
+.AC DEC 10 10 10MEG
+.TRAN 0.01US 1MS
+*
+
+* VIEW RESULTS
+.control
+run
+plot v(4)
+
+wrdata ee18btech11045_clresult.dat V(4)
+.endc 
+
+.end

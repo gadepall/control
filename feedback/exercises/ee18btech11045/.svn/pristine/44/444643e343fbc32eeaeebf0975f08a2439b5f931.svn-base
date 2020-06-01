@@ -1,0 +1,327 @@
+For the feedback transresistance amplifier in Fig. , use small-signal analysis to find the open-loop gain G, the feedback H, and the closed loop gain $G_m$. Neglect $r_o$ of each of the transistors and assume $R_C << \beta_2R_E$ and $R_E << R_F$, and that the feedback causes the signal voltage at the input node to be nearly zero. Evaluate $/frac{V_o}{I_s}$ for the following component values: $\beta_1 = \beta_2 = 100$ , $R_C = R_E = 10 k\ohm$ and $R_F = 100 k\ohm$.
+
+\begin{enumerate}[label=\arabic*.,ref=\theenumi]
+%\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi}
+
+\item Draw the small-signal equivalent of the circuit in Fig.\ref{fig:ee18btech11045_fb_question}.
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11045/ee18btech11045_fb_question.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:ee18btech11045_fb_question}
+\end{figure}
+
+\solution
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11045/ee18btech11045_fb_smallsignalmodel.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:ee18btech11045_fb_smallsignalmodel}
+\end{figure}
+
+The equivalent circuit is Fig.\ref{fig:ee18btech11045_fb_smallsignalmodel}
+
+\item Find the expression for the open loop Gain(G) of the system.
+
+\solution
+
+The given system is a cascaded system of $Q_1$ and $Q_2$.
+The signal flow graph is illustrated in Fig. \ref{fig:ee18btech11045_fb_signalflow}
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11045/ee18btech11045_fb_signalflow.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:ee18btech11045_fb_signalflow}
+\end{figure}
+
+So, if the gain of $Q_1$ and $Q_2$ are $G_1$ and $G_2$ respectively, the open-loop gain ($G$) is given by:
+\begin{align}
+    G = G_1G_2
+    \label{eq:ee18btech11045_fb_Gainformula}
+\end{align}
+
+$Q_1$ is in CE(Common-emitter) stage. The input signal is $I_{in}$.
+From fig. \ref{fig:ee18btech11045_fb_smallsignalmodel},
+\begin{align}
+    I_X = I_{in}
+\end{align}
+\begin{align}
+    \beta = \frac{I_c}{I_b}
+\end{align}
+Applying Kirchoff's Law in the loop connecting Y to ground,
+\begin{align}
+    \implies V_Y = \beta I_{in} R_C
+\end{align}
+\begin{align}   
+    G_1 = \frac{V_{out}}{I_{in}} = \frac{V_{Y}}{I_{X}}
+    \\
+    =\beta R_c
+\end{align}
+
+$Q_2$ is in emitter follower topology.
+\begin{align}
+    V_{\pi 2}  = V_Y - V_Z
+\end{align}
+Applying Kirchoff's Law,
+\begin{align}
+    \frac{V_Y - V_Z}{r_{\pi}} + g_{m2}\brak{V_Y-V_Z} = \frac{V_Z}{R_E}
+\end{align}
+\begin{align}
+    \implies \frac{V_Z}{V_Y} = \frac{R_E}{\frac{1}{g_{m2}} + R_E}
+\end{align}
+\begin{align}
+    \implies G_2 = \frac{R_E}{\frac{1}{g_{m2}} + R_E}
+\end{align}
+
+From \eqref{eq:ee18btech11045_fb_Gainformula}, the open loop gain ($G$):
+\begin{align}
+    G = \brak{\beta_1 R_c} \brak{\frac{R_E}{\frac{1}{g_{m2}} + R_E}}
+    \label{eq:ee18btech11045_fb_Gain}
+\end{align}
+
+\item Find the feedback factor(H) of the given circuit.
+
+\solution
+
+From Fig.\ref{fig:ee18btech11045_fb_smallsignalmodel}, the feedback circuit consists of only a resistor $R_F$:
+\begin{align}
+    \therefore H = \frac{I_F}{V_{out}} = \frac{1}{R_F}
+    \label{eq:ee18btech11045_fb_feedbackfactor}
+\end{align}
+
+\item Find the closed loop gain of the system.
+
+\solution 
+
+The closed loop gain of a system is given by:
+\begin{align}
+    G_L = \frac{G}{1+GH}
+\end{align}
+
+From \eqref{eq:ee18btech11045_fb_Gain} and \eqref{eq:ee18btech11045_fb_feedbackfactor}. The closed loop gain of the circuit is given by:
+\begin{align}
+    G_L = \frac{\brak{\beta_1 R_c} \brak{\frac{R_E}{\frac{1}{g_{m2}} + R_E}}}{1 + \frac{\brak{\beta_1 R_c} \brak{\frac{R_E}{\frac{1}{g_{m2}} + R_E}}}{R_F}}
+    \\
+    = \frac{R_FR_CR_E\beta}{\beta R_C R_E + R_F\brak{\frac{1}{g_{m2}}+R_E}}
+    \label{eq:ee18btech11045_fb_clgain}
+\end{align}
+
+
+\item Find G,H and $G_L$ for the given problem. Parameters are summarised in table \ref{table:ee18btech11045_table1}.
+%
+\begin{table}[!ht]
+\centering
+\input{./tables/ee18btech11045/ee18btech11045_table1.tex}
+\caption{}
+\label{table:ee18btech11045_table1}
+\end{table}
+
+\solution
+
+To calculate the bias values of Q1, Q2. Remove the input and output, the resultant circuit is shown in fig.\ref{fig:biascalc}
+
+\begin{figure}[!ht]
+	\begin{center}
+			\resizebox{\columnwidth}{!}{\input{figs/ee18btech11045/ee18btech11045_fb_biascalc.tex}}
+	\end{center}
+\caption{}
+\label{fig:biascalc}
+\end{figure}
+
+Applying KVL to the circuit, we get:
+\begin{align}
+    0.7  + I_{b1}R_F + \brak{I_{b1} - (\beta+1)I_{b2}}R_E = -V_{ee}
+\end{align}
+\begin{align}
+    0.7 + I_{b1}R_F + 0.7 + \brak{\beta I_{b1} + I_{b2}}R_C = V_{cc}
+\end{align}
+
+Solving the above equations, we get:
+\begin{align}
+    I_{b1} = \frac{\frac{V_{cc} - 1.4}{R_C} - \frac{V_{ee} +0.7}{R_E(\beta+1)}}{\frac{R_F + \beta R_C}{R_C} + \frac{R_E + R_F}{R_E(\beta + 1)}}
+    \\
+    = 3.22 * 10^{-6}
+\end{align}
+\begin{align}
+    I_{b2} = \frac{\frac{V_{cc} - 1.4}{\beta R_C + R_F} + \frac{V_{ee}+0.7}{R_E+R_F}}{\frac{R_C}{R_F+\beta R_C} + \frac{R_E(\beta+1)}{R_E+R_F}}
+\end{align}
+
+we know, 
+\begin{align}
+    g_m = \frac{I_{c}}{V_T}
+\end{align}
+where, $V_T$ = 26mV, and
+\begin{align}
+    r_{\pi} = \frac{\beta}{g_m}
+\end{align}
+
+\begin{align}
+    \therefore g_{m1} &= \frac{\beta I_{b1}}{V_T}
+    \\
+    &= 0.0123
+\end{align}
+\begin{align}
+    r_{\pi 1} &= \frac{\beta}{g_{m1}}
+    \\
+    &= 8130 \ohm
+\end{align}
+\begin{align}    
+    \therefore g_{m2} &= \frac{\beta I_{b2}}{V_T}
+    \\
+    &= 0.023
+\end{align}
+\begin{align}
+    r_{\pi 2} &= \frac{\beta}{g_{m2}}
+    \\
+    &= 4347.8 \ohm
+\end{align}
+
+From \eqref{eq:ee18btech11045_fb_Gain}, the open loop gain (G):
+\begin{align}
+    G &= \brak{100*(10K)}\brak{\frac{10^{4}}{10^{4} + \frac{1}{0.023}}} \ohm
+    \\
+    &= \brak{10^{6}}\brak{0.995}
+    \\
+    &= 995670 \ohm
+\end{align}
+
+From \eqref{eq:ee18btech11045_fb_feedbackfactor}, the feedback (H):
+\begin{align}
+    H = \frac{1}{100K} \ohm^{-1}
+    \implies H = 10^{-5} \ohm^{-1}
+\end{align}
+
+From \eqref{eq:ee18btech11045_fb_clgain}, the closed loop gain ($G_L$):
+\begin{align}
+    G_L &= \frac{995670}{1 + (995670)(10^{-5})} \ohm
+    \\
+    &= 99006.52 \ohm
+    \label{ee18btech11045_closedloopgaincl}
+\end{align}
+
+\item Verify the result using spice simulation.
+
+\solution
+
+The following netlist simulates the closed loop gain for a sinusoidal signal of amplitude $10^{-6}$
+\begin{lstlisting}
+codes/ee18btech11045/spice/ee18btech11045_clresult.net
+\end{lstlisting}
+
+The output is plotted using the folowing code.
+\begin{lstlisting}
+codes/ee18btech11045/spice/ee18btech11045_clresult.py
+\end{lstlisting}
+
+The output is plotted in fig. \ref{fig:ee18btech11045_fb_clresult}. The output amplitude is shown to be 0.1 .
+\begin{align}
+    \therefore \frac{V_{out}}{I_{in}} \approx 10^{5}
+\end{align}
+This proves the value calculated in \eqref{ee18btech11045_closedloopgaincl}.
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/ee18btech11045/ee18btech11045_clresult.eps}}
+	\end{center}
+	\caption{}
+	\label{fig:ee18btech11045_fb_clresult}
+\end{figure}
+
+\item Represent the circuit using a Feedback Block diagram.
+
+\solution
+
+\begin{figure}[!ht]
+	\begin{center}
+			\resizebox{\columnwidth}{!}{\input{figs/ee18btech11045/ee18btech11045_fb_block_diag}}
+	\end{center}
+\caption{Shunt-Shunt Feedback}
+\label{fig:Block_Diagram}
+\end{figure}
+
+\item Calculate the input resistance of the open loop and closed loop system and compare.
+
+\solution
+
+For the cascaded system of $Q1$ and $Q2$, the input resistance of the system $R_{in}$,
+\begin{align}
+    R_{in} = R_{in_{Q1}}   
+\end{align}
+
+To calculate the input resistance of the system, shot the independent sources  and find the ratio $\frac{V_in}{I_in}$. As, $Q1$ is in common-emitter stage, from the fig. \ref{fig:ee18btech11045_fb_smallsignalmodel},
+\begin{align}
+    R_in &= r_{\pi1}
+    \\
+    &= 8130 \ohm
+\end{align}
+
+After feedback is applied, to calculate input resistance, consider an input source $V_{in}$ is connected to the input,
+\begin{align}
+    V_{out} &= I_{in}G
+    &= \frac{V_{in}}{R_{in}}G
+\end{align}
+But as feedback is applied,
+\begin{align}
+    V_{in} &= V_{out} H
+    &= \frac{V_{in}}{R_{in}}GH
+\end{align}
+Applying KVL for input loop in fig. \ref{fig:Block_Diagram},
+\begin{align}
+    \brak{I_{in} - \frac{V_{in}}{R_{in}}GK}R_{in} = V_{in}
+\end{align}
+\begin{align}
+    \implies R_{in_{cl}} = \frac{V_{in}}{I_{in}} = \frac{R_in}{1+GH}
+\end{align}
+where, $R_in$ is the input resistance of open loop.Therefore, $R_{in}$ after feedback:
+\begin{align}
+    R_{in} &= \frac{r_{pi1}}{1 + GH}
+    \\
+    &= \frac{8130}{10.95} = 742 \ohm
+\end{align}
+
+The input should act as an ideal current source, so as the input resistance is decreased, the feedback gives more favourable value of $R_{in}$.
+
+\item Calculate the output resistance of the open loop and closed loop system and compare.
+
+\solution
+
+Similar to the input resistance, the output resistance of the cascaded system is the output resistance of $Q2$. As $Q2$ is in emitter follower configuration, from the fig. \ref{fig:ee18btech11045_fb_smallsignalmodel},
+
+\begin{align}
+    R_{out} &= \frac{1}{g_{m2}}
+    \\
+    &= \frac{1}{0.023} = 43.37 \ohm
+\end{align}
+
+To calculate output resistance after feedback is applied, consider a voltage source $V_X$ applied at $V_{out}$ with output current $I_X$ :
+\begin{align}
+    V_{in} = HV_{X}
+\end{align}
+\begin{align}
+    \implies V_{out} = GHV_{X}
+\end{align}
+Applying KVL at ouput loop,
+\begin{align}
+    \frac{GHV_X+V_X}{R_{out}} = I_X
+\end{align}
+The closed loop output impedance,
+\begin{align}
+    R_{out_{cl}} &= \frac{V_X}{I_X}
+    \\
+    &= \frac{R_{out}}{1 + GH}
+\end{align}
+The output resistance after feedback:
+\begin{align}
+    R_{out} = \frac{43.37}{10.95} = 3.96 \ohm
+\end{align}
+
+The ouput should act as an ideal voltage source, i.e the output resistance should be as low as possible. As feedback reduces the values of $R_{out}$, it causes the output resistances to be more favourable.
+
+\end{enumerate}

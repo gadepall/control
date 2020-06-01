@@ -1,0 +1,21 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+
+
+\draw (0, 0.25) to [C=$C$,*-*] (0, -1.5) to node[ground]{} (0,-2);
+\draw (0, 0.25) to [R=$R$,*-*] (-2, 0.25) to [C=$C$,*-*] (-2, -1.5) to node[ground]{} (-2,-2);
+\draw (-2, 0.25) to [R=$R$,*-*] (-4, 0.25) to [C=$C$,*-*] (-4, -1.5) to node[ground]{} (-4,-2);
+\draw (-4, 0.25) to [R=$R$,*-*] (-6, 0.25);
+\draw (0, 0.25) to [R=$R$,*-*] (2, 0.25);
+
+\draw[-latex] (-6,0.25) to node[below] {$I_{1}$} (-5.6, 0.25);
+\draw[-latex] (-4,0.25) to node[below] {$I_{2}$} (-3.6, 0.25);
+\draw[-latex] (-2,0.25) to node[below] {$I_{3}$} (-1.6, 0.25);
+\draw[-latex] (0,0.25) to node[below] {$I_{4}$} (0.4, 0.25);
+
+\draw node at (-4, 0.5){$V_{1}$};
+\draw node at (-2, 0.5){$V_{2}$};
+\draw node at (0, 0.5){$V_{3}$};
+\draw node at (2, 0.5){$V_{4}$};
+\draw node at (-6, 0.5){$V_{X}$};
+\end{circuitikz}

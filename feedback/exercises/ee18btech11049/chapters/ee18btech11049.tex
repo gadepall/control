@@ -204,4 +204,51 @@ Condition for oscillation is $1-L\brak{s} = 0$
     1 + \frac{R_2}{R_1} = 3.35 \\
     \frac{R_2}{R_1} = 2.35
 \end{align}
+
+\item Verify and compare the oscillator results using ngspice . 
+\\
+
+\solution 
+
+\begin{itemize}
+\item Refer to Fig. \ref{fig:ee18btech11049_original}
+ for the spice simulation output.  
+\item original netlist simulated circuit here:
+\begin{lstlisting}
+codes/ee18btech11049/ee18btech11049_1.net
+\end{lstlisting}
+\item You can find the python script for the above, used to generate the output here:
+\begin{lstlisting}
+spice/ee18btech11049/ee18btech11049_1.py
+\end{lstlisting}
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{./figs/ee18btech11049/ee18btech11049_1.eps}
+\caption{Simulation result}
+\label{fig:ee18btech11049_original}
+\end{figure}
+
+\item Re-designed output . 
+\begin{itemize}
+\item Refer to Fig. \ref{fig:ee18btech11049_original}
+ for the spice simulation output.  
+\item original netlist simulated circuit here:
+\begin{lstlisting}
+codes/ee18btech11049/ee18btech11049_2.net
+\end{lstlisting}
+\item You can find the python script for the above, used to generate the output here:
+\begin{lstlisting}
+spice/ee18btech11049/ee18btech11049_2.py
+\end{lstlisting}
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{./figs/ee18btech11049/ee18btech11049_2.eps}
+\caption{Simulation result}
+\label{fig:ee18btech11049_final}
+\end{figure}
+
 \end{enumerate}

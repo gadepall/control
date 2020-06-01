@@ -1,0 +1,202 @@
+\begin{enumerate}[label=\thesubsection.\arabic*.,ref=\thesubsection.\theenumi]
+\numberwithin{equation}{enumi}
+
+\item We are given with a feedback voltage amplifier shown in \ref{fig:Voltage feedback amplifier}.We can neglect $r_{o}$ and given with $R_{1}+R_{2}>>R_{D}$.\\
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/es17btech11019/Voltage_feedback_amplifier.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:Voltage feedback amplifier}
+\end{figure}
+
+\item part(a) : We have to find the expressions for $G$(open loop gain) , $H$(the feedback factor) and hence the amount of feedback.\\
+
+\solution
+For this , first we have to draw the Small-Signal Model for the above Circuit, we ground all constant voltage sources and open all constant current sources. All Small-Signal paramters are obtained from DC-Analysis of the circuit.In Small-Signal Analysis a N-MOSFET is modelled as a Current Source with value of current equal to $g_{m}v_{gs}$ flowing from Drain to Source. Whereas a P-MOSFET is modelled as a Current Source with value of current equal to $g_{m}v_{sg}$ flowing from Source to Drain.
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/es17btech11019/small_signal_model.tex}}
+	\end{center}
+	\caption{Small Signal Model}
+	\label{fig:Small_Signal}
+\end{figure}
+
+%------------------------------------------------------------------------%
+
+\item For finding open loop gain ($G$) and the feedback factor ($H$).\\
+\solution 
+For finding the open loop gain we have to remove $R_{2}$ and $R_{1}$  and the gate should be grounded.
+%------------------------------------------------------------------------%
+
+\item Finding the open loop gain($G$)\\
+\solution
+\begin{align}
+V_{o} = -g_{m}V_{gs}*R_{D}\\
+V_{gs} = -V_{S}\\
+G = \cfrac{V_{o}}{V_{s}}\\
+G = g_{m}R_{D}
+\end{align}
+%------------------------------------------------------------------------%
+
+\item Finding the Expression for the feedback factor $H$.\\
+\solution
+
+\begin{align}
+H = \cfrac{V_{f}}{V_{o}}\\
+V_{f} = \cfrac{R_{1}}{R_{1}+R_{2}}V_{o}\\
+H = \cfrac{R_{1}}{R_{1}+R_{2}}
+\end{align}
+
+
+Amount of feedback is defined as : $1+GH$
+\begin{align}
+1+GH = 1 + \cfrac{g_{m}R_{D}R_{1}}{R_{1}+R{2}} 
+\end{align}
+
+%------------------------------------------------------------------------%
+
+
+
+The figure for part(b) :
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{\columnwidth/1}{!}{\input{./figs/es17btech11019/CG_amplifier.tex}}
+	\end{center}
+	\caption{CG amplifier}
+	\label{fig:CG amplifier}
+\end{figure}
+
+\item Part(b) : We have to eliminate the feedback by removing $R_{1}$ and $R_{2}$ and connecting the gate of Q to a constant DC voltage (signal ground).We have to find the expression of the input resistance  $R_{i}$ and the output resistance $R_{o}$ of the open loop amplifier.\\
+\solution\\
+When the $R_{1}$ and $R_{2}$ and gate of Q is connected to a constant DC voltage (signal ground) it becomes a CG(Common gate amplifier) without feedback.
+We can directly see from the \ref{fig:CG amplifier} the expression of input resistance $R_{i}$ and output resistance $R_{o}$.
+
+
+For finding input resistance , output constant voltages are grounded and hence the only current flowing is $g_{m}V_{gs}$.Hence $R_{i}$ is :
+
+
+
+\begin{align}
+I_{in} = -g_{m}V_{gs}\\
+V_{in} = V_{S}\\
+V_{S} = -V_{gs}\\
+R_{i} = \cfrac{V_{in}}{I_{in}}\\
+R_{i} = \cfrac{1}{g_{m}}
+\end{align}
+
+Similarly , for finding output $R_{o}$ , $V_{in}$ that is $V_{S}$ will be zero and hence $g_{m}V_{gs}$ will be zero. Hence only $R_{D}$ will 
+be left which is the output resistance.
+
+\begin{align}
+R_{o}=R_{D}
+\end{align}
+%------------------------------------------------------------------------%
+\item Part(c) : Using standard circuit analysis that is without using feedback approach we have to find the input resistance $R_{if}$ and output resistance $R_{of}$ and how they relate to $R_{i}$ and $R_{o}$ , which we find earlier.\\
+\solution \\
+We will find them one by one.
+
+\begin{figure}[ht!]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/es17btech11019/input_resistance.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:Small signal for finding input resistance}
+\end{figure}
+
+\item finding expression for $R_{if}$\\
+\solution\\
+
+To obtain $R_{if}$ consider the figure \ref{fig:Small signal for finding input resistance} :
+
+
+
+We gave test input voltage $V_{x}$ and current $I_{x}$ to find the input resistance from the input side to find $R_{i}$.
+
+\begin{align}
+R_{if} = \cfrac{V_{x}}{I_{x}}\\
+I_{x} = -g_{m}V_{gs} \\
+V_{o} = I_{x}R_{D}\\
+V_{f} = \cfrac{V_{o}R_{1}}{R_{1}+R_{2}} = \cfrac{I_{x}R_{D}R_{1}}{R_{1}+R_{2}} \\
+V_{x} = -V_{gs} + V_{f} \\
+V_{x} = \cfrac{I_{x}}{g_{m}} + \cfrac{I_{x}R_{D}R_{1}}{R_{1}+R_{2}}\\
+\cfrac{V_{x}}{I_{x}} =  \cfrac{1}{g_{m}} + \frac{R_{D}R_{1}}{R_{1}+R_{2}}\\
+rearranging :\\
+R_{if} =  \cfrac{1}{g_{m}}(1+\cfrac{g_{m}R_{D}R_{1}}{R_{1}+R_{2}})\\
+R_{if} = R_{i}(1+GH)
+\end{align}
+
+The input impedance is increased by a factor of $(1+GH)$.
+$R_{if}$ is related to $R_{i}$ by :\\
+\begin{align}
+R_{if} = R_{i}(1 + GH)
+\end{align}
+
+%------------------------------------------------------------------------%
+
+
+
+The figure for finding output resistance :
+
+\begin{figure}[ht!]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{./figs/es17btech11019/output_resistance.tex}}
+	\end{center}
+	\caption{}
+	\label{fig:Small signal for finding output resistance}
+\end{figure}
+
+\item finding expression for $R_{of}$\\
+\solution\\
+
+To obtain $R_{of}$ consider the figure \ref{fig:Small signal for finding output resistance} :
+
+
+
+We gave test input voltage $V_{x}$ and current $I_{x}$ from the output side to find the output resistance and made the input constant voltages as zero.
+
+\begin{align}
+R_{of} = \cfrac{V_{x}}{I_{x}}\\
+I_{x} = g_{m}V_{gs}(\cfrac{V_{x}}{R_{1}+R_{2}})+(\cfrac{V_{x}}{R_{D}})\\
+V_{gs} = \cfrac{R_{1}V_{x}}{R_{1}+R_{2}}\\
+I_{x} = \cfrac{g_{m}R_{1}V_{x}}{R_{1}+R_{2}}+\cfrac{V_{x}}{R_{1}+R_{2}}+(\cfrac{V_{x}}{R_{D}})\\
+I_{x} = V_{x}(\cfrac{g_{m}R_{1}+1}{R_{1}+R_{2}} + \cfrac{1}{R_{D}})\\
+R_{of} = \cfrac{V_{x}}{I_{x}}\\ R_{of} = \cfrac{1}{\cfrac{g_{m}R_{1}+1}{R_{1}+R_{2}}+\cfrac{1}{R_{D}}}
+\end{align}
+
+
+
+rearranging and multiply both the numerator and denominator by $R_{D}$\\
+
+\begin{align}
+R_{of} = \cfrac{R_{D}}{\cfrac{g_{m}R_{1}R_{D}}{R_{1}+R_{2}}+1+\cfrac{R_{D}}{R_{1}+R_{2}}}
+\end{align}
+
+since $R_{1}+R_{2}>>R_{D} \implies \cfrac{R_{D}}{R_{1}+R_{2}} = 0$\\
+
+\begin{align}
+R_{of} = \cfrac{R_{D}}{1 + \cfrac{ g_{m}R_{1}R_{D}}{R_{1}+R_{2}}}\\
+R_{of} = \cfrac{R_{o}}{1 + GH}
+\end{align}
+
+The output impedance is decreased by a factor of $(1+GH)$.
+$R_{of}$ is related to $R_{o}$ by :\\
+\begin{align}
+R_{of} = \cfrac{R_{o}}{1 + GH}
+\end{align}
+
+%------------------------------------------------------------------------%
+
+The table showing all the expressions we find out in this problem :
+
+\begin{table}[!ht]
+\centering
+\input{./tables/es17btech11019/table.tex}
+\caption{}
+\label{table}
+\end{table}
+
+
+\end{enumerate}

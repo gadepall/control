@@ -1,0 +1,15 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+
+ 
+\draw (0, 0) node[op amp, scale = 0.5] (opamp) {};
+\draw (opamp.-) --(-1,0.25)-- (-1,1) to[R=$R_{f}$,*-*] (1,1) -- (1,0);%[C=$C$,*-*] (0.25,-1) to [R=$R$,*-*] (-1,-1) -- (-1,-0.35) to (opamp.+);
+\draw (opamp.+) --(-1,-0.25) to node[ground]{}  (-1, -0.6) ;
+\draw (-1, 0.25) to [R=$R$,*-*] (-2.6, 0.25) to [C=$C$,*-*] (-2.6, -1.5) to node[ground]{} (-2.6,-2);
+\draw (-2.6, 0.25) to [R=$R$,*-*] (-3.9, 0.25) to [C=$C$,*-*] (-3.9, -1.5) to node[ground]{} (-3.9,-2);
+\draw (-3.9, 0.25) to [R=$R$,*-*] (-5.2, 0.25) to [C=$C$,*-*] (-5.2, -1.5) to node[ground]{} (-5.2,-2);
+\draw (-5.2, 0.25) to [R=$R$,*-*] (-6.5, 0.25) -- (-6.5, 2) -- (1,2)-- (1,1);
+\draw (opamp.out) -- (1.5,0) ;
+\draw node at (1.8, 0){$V_{O}$};
+\draw node at (-6.8, 0.25){X};
+\end{circuitikz}

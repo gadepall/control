@@ -1,20 +1,7 @@
- 
-\tikzstyle{block} = [draw, fill=white!20, rectangle, 
-    minimum height=2em, minimum width=6em]
-\tikzstyle{sum} = [draw, fill=white!20, circle, node distance=1cm]
-\tikzstyle{input} = [coordinate]
-\tikzstyle{output} = [coordinate]
-\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
-
-\begin{tikzpicture}[auto, node distance=3cm,>=latex']
-    \node [input, name=input] {};
-    \node [sum, right of=input] (sum) {};
-    \node [block, right of=sum] (controller) {$G(s) = K$};
-    \node [output, right of=controller] (output) {};
-    \node [block, below of=controller] (feedback) {$H(s) = \frac{1}{sRC + \frac{1}{sRC} + 2.1}$};
-
-    \draw [->] (sum) -- node {$V_i$} (controller);
-    \draw [->] (controller) -- node [name=y] {$V_o$}(output);
-    \draw [->] (y) |- (feedback);
-    \draw [->] (feedback) -| node[pos=0.99]{$+$}  node [near end] {$V_f$} (sum);
-\end{tikzpicture}
+\usetikzlibrary{decorations.markings}
+\begin{circuitikz}
+\ctikzset{tripoles/mos style/arrows}
+\draw (1,2) to[short, -o] (0,2) node[label={above:$V_i$}]{};
+\draw (1,2) to[R=$R_1$] (2,2) -- (3,2) to[R=$R_2$] (3,0) node[ground](GND){};
+\draw (3,2) to[short, -o] (4,2) node[label={above:$V_o$}]{};
+\end{circuitikz}

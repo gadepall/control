@@ -1,0 +1,18 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+\draw (0,-0.5) node[]{} to [short](0,0.5) to [short](1,0) to [short](0,-0.5);
+
+\draw (0.3, 0) node{$k$};
+\draw (1,0) to [R=$R_2$](3,0) to [L=$L_2$](5,0) to [C=$C_2$](5,-3) node[ground]{};
+\draw (7.5,-0.35) node[op amp] (opamp_1){}
+(opamp_1.-) -- (5,0)
+(opamp_1.+) to[V=$V_i$](6.7,-3) node[ground]{}
+(opamp_1.center) node{$10^3$}
+
+
+(opamp_1.out) 
+(8,-0.35) -- (11,-0.35)--(11,-4)--(-0.8,-4)to (-0.75,0) --(0,0)
+(11,-0.35) to (11.5,-0.35)node at (11.8,-0.35){$V_0$}
+
+(5,0)--(5,0.2)node at (5,0.5){$V_f$};
+\end{circuitikz}

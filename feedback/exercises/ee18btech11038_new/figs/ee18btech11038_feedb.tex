@@ -1,0 +1,12 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+\draw (-1,-0.5) node[]{} to [short](-1,0.5) to [short](0,0) to [short](-1,-0.5);
+\draw 
+(0,0) to[L =$L_2$,*-*] (2,0)to[R=$R_2$](4,0) to [C](4,-2.4) node[ground]{}
+(-1,0)   to (-1.8,0)node at (-2,0){$V_0$}
+(-0.75,0) node[]{k};
+\draw node at (4.6,-1.2){$V_f$}
+node at (4.6,0){$+$}
+node at (4.6,-2.4){$-$}
+node at (3.5,-1.2){$C_2$}
+;\end{circuitikz}

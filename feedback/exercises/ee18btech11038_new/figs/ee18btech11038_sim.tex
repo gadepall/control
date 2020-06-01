@@ -1,0 +1,16 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+\draw (0,-0.5) node[]{} to [short](0,0.5) to [short](1,0) to [short](0,-0.5);
+
+\draw (0.3, 0) node{$k$};
+\draw (1,0) to [R=$R_2$](3,0) to [L=$L_2$](5,0) to [C=$C_2$](5,-3) node[ground]{};
+\draw (5,0) to[short, -o] (6.5,0)node[right]{$v_{f}$};
+\draw (6.5, -2)  to[vsource, l=$v_{i}$](6.5, -3) to node[ground]{}(6.5,-3);
+\draw (6.5,-2) to[short, -o] (6.5,-1.5)node[right]{$v_{i}$};
+\draw (6.5,0)node[below]{$-$};
+\draw (6.5,-1.5)node[above]{$+$};
+\draw (8, 0) to[cV, l =$10^3\times(v_{i}-v_{f})$](8,-2) to node[ground]{}(8,-2);
+\draw (8,0) to [L = $L_{1}$ ](11.5,0) to [R=$R_{1}$](11.5,-2) to node[ground]{}(11.5,-2);
+\draw (11.5,0) to[short, -o] (13,0)node[right]{$v_{o}$};
+\draw (12.5, 0) to[short](12.5,-4) to[short](-1,-4) to[short](-1,0) to[short](0,0);
+\end{circuitikz}

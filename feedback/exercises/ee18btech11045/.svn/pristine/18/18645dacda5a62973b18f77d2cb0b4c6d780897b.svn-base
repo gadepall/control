@@ -1,0 +1,19 @@
+\begin{circuitikz}[american]
+\usetikzlibrary{positioning, fit, calc}
+\draw (0,0) to[I = $I_{in}$, *-*] (0,2) to[short, *-*] (2,2)node[above]{$+$} to[R=$R_{in}$,*-*] (2,0)node[below]{$-$}
+(2-0.2,1) node[left]{$V_{in}$}
+(2,2) to[short, *-*] (5,2) {}
+(7,1)node[draw,minimum width=4cm,minimum height=4cm] (load) {Gain Amplifier}{}
+(7,-4)node[draw,minimum width=4cm,minimum height=4cm] (load) {Feedback Network}{}
+(0,0) to[short, *-*] (5,0)
+(14,2) to[R = $R_{out}$, *-*] (9,2)
+(14,2) node[right]{$+$}
+(14,1) node[]{$V_{out}$}
+(14,0) node[right]{$-$}
+(14,0) to[short, *-*] (9,0)
+(3,0) to[short, *-*] (3,-5) to[short, *-*] (5,-5){}
+(4,2) to[short, *-*, i = $I_F$] (4,-3)
+(4,-3) to[short, *-*] (5,-3){}
+(10,2) to[short, *-*] (10,-3) to[short, *-*] (9,-3){}
+(9,-5) to[short, *-*] (11,-5) to[short, *-*] (11,0){}
+;\end{circuitikz}

@@ -1,0 +1,23 @@
+* Voltage AMplifier
+
+.include standard.mos
+
+M1 Vo N001 N002 N002 NMOS
+R1 N001 0 10K 
+R2 Vo N001 10K 
+RD COM Vo 100 
+Vs N002 0 10 
+.model NMOS NMOS
+
+.tran 0.1 5
+
+.control
+run
+plot V(Vo)/V(N002)
+wrdata open_loop_gain.dat V(Vo)/V(N002)
+
+plot V(N001)/V(Vo)
+wrdata feedback_gain.dat V(N001)/V(Vo)
+.endc
+
+.end

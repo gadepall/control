@@ -1,0 +1,18 @@
+* G:\mine\ee18btech11049.asc
+XU1 N001 Vout N003 N004 N002 LM741/NS
+C1 N001 0 16n
+R1 N001 0 10000
+C2 P001 N001 16n
+R2 N002 P001 10000
+V1 0 N004 15
+V2 N003 0 15
+R3 Vout 0 10000
+R4 N002 Vout 23500
+D1 N002 Vout D
+D2 Vout N002 D
+.model D D
+.lib C:\Users\bsail\Documents\LTspiceXVII\lib\cmp\standard.dio
+.tran 0.02 startup
+.lib G:\tejaswini\feedback\codes\ee18btech11047\spice\LM741.MOD
+.backanno
+.end

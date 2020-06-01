@@ -1,0 +1,185 @@
+An op amp having a low-frequency gain of $10^{3}$ and a single-pole rolloff at $10^{4}$ rad/s is connected in a negative feedback loop via a feedback network having a transmission k and a two-pole rolloff at $10^{4}$ rad/s. Find the value of k above which the closed-loop amplifier becomes unstable.
+\begin{enumerate}[label=\arabic*.,ref=\theenumi]
+
+%\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
+\numberwithin{equation}{enumi}
+\renewcommand{\thefigure}{\theenumi.\arabic{figure}}
+
+\item Find Open Loop Gain, $G(s)$\\
+\solution Gain for an amplifier whose transfer function is characterised with a single pole is-
+\begin{align}
+    G(s) &= \frac{G_{o}}{1+ \frac{s}{w_{p}}}
+\end{align}
+Here, $G_{o}$ is low frequency gain and $w_{p}$ is pole frequency. Thus for our problem,
+\begin{align}
+\label{eq:olg}
+    G(s) &= \frac{10^3}{1+\frac{s}{10^4}}
+\end{align}
+
+\item Find Feedback factor, $H(s)$\\
+\solution Given transmission(=low freq. gain) and two pole roll-off at $10^4$rad/s.
+\begin{align}
+    H(s)&= \frac{k}{\left(1+\frac{s}{10^4}\right)^2}
+\end{align}
+
+\item Loop Gain, G(s)H(s)\\
+\solution 
+\begin{align}
+    G(s)H(s) &= \frac{10^3k}{\left(1+\frac{s}{10^4}\right)^3}
+\end{align}
+
+\item Stability of the Closed Loop Amplifier\\
+\solution Closed loop systems stability can be tested by examining the Gain Margin, or Phase Margin alternatively. First, let's find $\omega_{180}$, the phase cross-over frequency
+\begin{align}
+       \angle G(j\omega)H(j\omega) =  \angle\frac{10^3k}{\left(1+\frac{j\omega}{10^4}\right)^3}\\
+       \implies -3tan^{-1}\left({\frac{\omega}{10^4}}\right)
+\end{align}
+At $\omega = \omega_{180}$,
+\begin{align}
+       -180^{\circ}= {-3tan^{-1}\left({\frac{\omega_{180}}{10^4}}\right)}\\
+        \implies \omega_{180} = \sqrt{3}\times 10^4
+\end{align}
+For a stable system, $GM_{dB}<0$,
+\begin{align}
+    \implies \abs{G(j\omega_{180})H(j\omega_{180})}< 1 \\
+    \implies \abs{\frac{10^3k}{\left(1-\sqrt{3}j\right)^3} } < 1\\
+     \implies \frac{10^3\abs{k}}{8} < 1 \\
+     \implies \abs{k} < 0.008
+\end{align}
+
+\item Analyze stability using phase margin.\\
+\solution For a stable closed loop amplifier, phase(absolute value) at gain cross-over frequency($\omega_{1}$) must be less than $180\degree$ i.e. $PM>0$. Let's first find $\omega_{1}$.
+\begin{align}
+     \abs{G(j\omega_{1})H(j\omega_{1})}= 1  \\
+   \implies \abs{\frac{10^3k}{{\sqrt{1+\frac{{\omega_{1}}^2}{10^8}}}^3}}=1\\
+  \implies \omega_{1}=\sqrt{10^8\left(10^2k^{\frac{2}{3}}-1\right)}
+\end{align}
+For stability,
+\begin{align}
+  180^{\circ}>3tan^{-1}\left({\frac{\sqrt{10^8\left(10^2k^{\frac{2}{3}}-1\right)}}{10^4}}\right)\\
+\end{align}
+\begin{align}
+  \implies \sqrt{10^8\left(10^2k^{\frac{2}{3}}-1\right)}&<\sqrt{3} \times 10^4\\
+    \implies 10^2k^{\frac{2}{3}}&<4\\
+\implies \abs{k}<0.008
+\end{align}
+Thus the closed loop amplifier is unstable for $k>0.008$.
+
+\item Design the Feedback Circuit\\
+\solution 
+\begin{align}
+    H(s)&= \frac{k}{\left(1+\frac{s}{10^4}\right)^2}\\
+\label{eq:expeq}
+    \implies k\left({\frac{1}{1+\frac{2s}{10^4}+\frac{s^2}{10^8}}}\right)  
+\end{align}
+To realise the transfer function above, consider the following circuit-
+
+\begin{figure}[!ht]
+	\begin{center}
+		
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11038_feedb.tex}}
+	\end{center}
+\caption{Feedback Circuit}
+\label{fig:ee18btech11038_feedb}
+\end{figure}
+
+Transfer function for the circuit in Fig \ref{fig:ee18btech11038_feedb} is,
+\begin{align}
+    k\left(\frac{\frac{1}{s{C_2}}}{{R_2}+s{L_2}+\frac{1}{s{C_2}}}\right)\\
+    \implies k\left(\frac{1}{1+s{R_2}{C_2}+{s^2}{L_2}{C_2}}\right)
+\end{align}
+
+Comparing it with \ref{eq:expeq}, one possible set of values for $R_{2}$, $L_{2}$ and $C_{2}$ is-
+\begin{align}
+    R_{2}&= 2k\Omega \\
+    L_{2}&= 100mH\\ 
+C_{2}&= 100nF
+\end{align}
+
+\item Design the closed loop circuit.\\
+\solution The closed loop circuit looks as shown in the Fig \ref{fig:ee18btech11038_cla}.
+
+\begin{figure}[!ht]
+	\begin{center}
+		
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11038_cla.tex}}
+	\end{center}
+\caption{Closed Loop Circuit}
+\label{fig:ee18btech11038_cla}
+\end{figure}
+
+Here, the op-amp has a gain given by
+\begin{align}
+    G(s) &= \frac{10^3}{1+\frac{s}{10^4}}
+\end{align}
+\item Find the closed loop transfer function, $T(s)$.\\
+\solution 
+\begin{align}
+    T(s)&=\frac{\frac{10^3}{1+\frac{s}{10^4}}}{1+\frac{10^3k}{\left(1+\frac{s}{10^4}\right)^3}}\\
+    &=\frac{10^7s^2+2\times10^{11}s+10^{15}}{s^3+3\times10^4s^2+3\times10^8s+10^{12} + 10^{15}\times k}
+\end{align}
+
+\item Sketch the bode plot of T(s).\\
+\solution Assuming $k=0.001$ for numerical simplicity.
+The bode plot looks as shown in Fig \ref{fig:ee18btech11038_bode}
+You can find the python script used to generate the bode plot here:
+\begin{lstlisting}
+codes/ee18btech11038_bode.py
+\end{lstlisting}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{./figs/ee18btech11038_bode.eps}
+\caption{Bode Plot for $T(s)$}
+\label{fig:ee18btech11038_bode}
+\end{figure}
+
+\item Simulate the circuit using spice.\\
+\solution For simulation purpose, we will realise the closed loop amplifier as shown in Fig \ref{fig:ee18btech11038_sim} in spice.
+
+
+\begin{figure}[!ht]
+	\begin{center}
+		
+		\resizebox{\columnwidth}{!}{\input{./figs/ee18btech11038_sim.tex}}
+	\end{center}
+\caption{Circuit used for Simulation}
+\label{fig:ee18btech11038_sim}
+\end{figure}
+
+\begin{align}
+    R_{1}&= 1k\Omega \\
+    L_{1}&= 100mH
+\end{align}
+
+\item Verify by results obtained using simulation\\
+\solution Fig \ref{fig:ee18btech11038_freqres} shows the frequency response plot for the circuit in Fig \ref{fig:ee18btech11038_freqres} obtained using an A.C. sweep in spice.
+You can find the netlist for the simulated circuit here:
+\begin{lstlisting}
+spice/ee18btech11038_opamp.cir
+\end{lstlisting}
+You can find the python script used to generate the output here:
+\begin{lstlisting}
+spice/ee18btech11038_opamp.py
+\end{lstlisting}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{./figs/ee18btech11038_freqres.eps}
+\caption{Frequency Response from Simulation}
+\label{fig:ee18btech11038_freqres}
+\end{figure}
+
+Clearly, the bode plot in Fig \ref{fig:ee18btech11038_bode} and plots in Fig \ref{fig:ee18btech11038_freqres} match. Hence verified.
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+

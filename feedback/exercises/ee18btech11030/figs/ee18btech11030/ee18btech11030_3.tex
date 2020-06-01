@@ -1,9 +1,9 @@
 \usetikzlibrary{decorations.markings}
 \begin{circuitikz}
-\draw (2,2)  node[op amp] (OA) {};
-\draw (OA.+) -- (0,1.5) to (0,0) node[label={below:$V_i$}]{};
-\draw (OA.-) -- (0,2.5) node[label={}]{} to[R,l_=$R_1$] (-2,2.5) node[ground](GND){};
-\draw (OA.out) -- (3,2) node[label={}]{};
-\draw (3,2) -- (4.5,2) node[label={above:$V_{o}$}]{};
-\draw (3,2) -- (3,4.5) to[R=$R_2$] (0,4.5) -- (0,2.5);
+
+\draw (3,4) to [capacitor=$C$](1.7,4) to (1,4)  to [R=$R$] (1,2) to (1,2) node[ground]{} ;
+\draw (3,4) to [short, -o] (3.5,4) node[label={above:$V_{o}$}]{} ;
+\draw (1,4) node[label = {above:$V_1$}]{} to  [R=$10R$] (-1,4) to [capacitor=$C/10$](-1,2) to (-1,2) node[ground]{} ;
+\draw (-1,4) to [short, -o] (-2,4) node[label={above:$V_{f}$}]{};
+
 \end{circuitikz}
